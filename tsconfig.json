@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "module": "esnext",
+    "module": "esnext",
+    "module": "esnext",
+    "module": "esnext",
+    "jsx": "react"
+  },
+  "compilerOptions": {
+    "jsx": "react"
+  },
+  "compilerOptions": {
+    "jsx": "react"
+  },
+  "compilerOptions": {
+    "jsx": "react"
+  },
+  "extends": "@react-native/typescript-config/tsconfig.json"
+}
