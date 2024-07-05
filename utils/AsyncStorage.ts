@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const storeDataString = async (value: any, id: number) => {
@@ -69,16 +70,16 @@ const multiGetItem = async () => {
   console.log(ArrayValue);
 };
 // ghép các cặp lại thành 1 mảng key:value
-const multiSetItem = async () => {
-  let FirstPair = ['age', '5'];
-  let TwoPair = ['sex', '1'];
-  try {
-    await AsyncStorage.multiSet([FirstPair, TwoPair]);
-  } catch (error) {
-    console.log(error);
-  }
-  console.log('done');
-};
+// const multiSetItem = async () => {
+//   let FirstPair = ['age', '5'];
+//   let TwoPair = ['sex', '1'];
+//   try {
+//     await AsyncStorage.multiSet([FirstPair, TwoPair]);
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   console.log('done');
+// };
 const removeFew = async () => {
   const keys = ['@MyApp_USER_1', '@MyApp_USER_2'];
   try {
