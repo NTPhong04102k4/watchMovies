@@ -10,12 +10,12 @@ import database from '@react-native-firebase/database';
 import {GoogleSignin,GoogleSigninButton} from '@react-native-google-signin/google-signin';
 database().setPersistenceEnabled(true);
 GoogleSignin.configure({
-  androidId:'364773568221-u2ol6qfb616sb6rlgtqi59kegft82s78.apps.googleusercontent.com',
-  iosClientId:'364773568221-lf0jb11i3b68ifvtullkkp4o9377rkhl.apps.googleusercontent.com',
+  androidId:'288149904447-u2ol6qfb616sb6rlgtqi59kegft82s78.apps.googleusercontent.com',
+  iosClientId:'288149904447-lf0jb11i3b68ifvtullkkp4o9377rkhl.apps.googleusercontent.com',
   offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
   hostedDomain: '', // specifies a hosted domain restriction
   forceCodeForRefreshToken: true,  // scopes: ['https://www.googleapis.com/auth/drive.readonly'], // API nào bạn muốn truy cập thay mặt người dùng, mặc định là email và hồ sơ
-  webClientId: '364773568221-a6brc0u312250il0pgvoa3g7u0gsiabd.apps.googleusercontent.com', // ID khách hàng thuộc loại WEB cho máy chủ của bạn. Cần thiết để lấy idToken trên đối tượng người dùng và để truy cập ngoại tuyến.
+  webClientId: '288149904447-0b9j9llm201m3a0o0r3lqalj5e1n6qaq.apps.googleusercontent.com', // ID khách hàng thuộc loại WEB cho máy chủ của bạn. Cần thiết để lấy idToken trên đối tượng người dùng và để truy cập ngoại tuyến.
   // offlineAccess: true, //nếu bạn muốn truy cập Google API thay mặt cho người dùng TỪ MÁY CHỦ CỦA BẠN
   // hostedDomain: "mycollege.edu", //chỉ định hạn chế tên miền được lưu trữ
   // forceCodeForRefreshToken: true, // [Android]liên quan đến `serverAuthCode`, hãy đọc liên kết tài liệu bên dưới
