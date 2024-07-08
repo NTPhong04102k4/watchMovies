@@ -22,7 +22,7 @@ import {
 } from 'react-native-fbsdk-next';
 import {CommonActions} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
-import {storeData} from '../../src/redux_toolkit/features/StoreInforLogin';
+import {storeData} from '../../src/redux_toolkit/features/loginslice';
 import {storeDataObject} from '../../utils/AsyncStorage';
 const signInWithGG = async ({navigation, dispatch}: any) => {
   try {

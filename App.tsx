@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import Stack from './utils/rootNavigation';
 import {Provider} from 'react-redux';
 import storeDataLogin from './src/redux_toolkit/Store';
 import {useDispatch} from 'react-redux';
 import {readDataObject} from './utils/AsyncStorage';
-import {storeData} from './src/redux_toolkit/features/StoreInforLogin';
+import {storeData} from './src/redux_toolkit/features/loginslice';
+import {ThemeContext} from './screen/useContext/StateThemeContext';
 const App = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const App = () => {
   }, []);
 
   if (loading == true) {
-    return <></>;
+    return null;
   } else {
     return (
       <NavigationContainer>
@@ -30,9 +31,25 @@ const App = () => {
   }
 };
 export default function AppWrapper() {
+  const [isThemeDark, setIsThemeDark] = React.useState(true);
+useEffect(()=>{toggleTheme(isThemeDark)},[isThemeDark])
+  const toggleTheme = React.useCallback(
+    (value: boolean) => {
+      console.log('llll')
+      return setIsThemeDark(value);
+    },
+    [isThemeDark],
+  );
+  const valueTheme = React.useMemo(
+    () => ({isThemeDark, toggleTheme}),
+    [isThemeDark, toggleTheme],
+  );
+
   return (
-    <Provider store={storeDataLogin}>
-      <App />
-    </Provider>
+    <ThemeContext.Provider value={valueTheme}>
+      <Provider store={storeDataLogin}>
+        <App />
+      </Provider>
+    </ThemeContext.Provider>
   );
 }

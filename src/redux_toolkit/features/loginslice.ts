@@ -13,7 +13,7 @@ const initialState: LoginState = {
   accessToken: null,
   isSignIn: false,
 } 
-
+ 
 const loginSlice = createSlice({
   name: "login",
   initialState,
@@ -33,3 +33,4 @@ const loginSlice = createSlice({
 
 export const { storeData, deleteData } = loginSlice.actions;
 export default loginSlice.reducer;
+
