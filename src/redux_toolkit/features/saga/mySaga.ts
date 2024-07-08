@@ -1,7 +1,7 @@
 import 'regenerator-runtime/runtime'
 import sagaMiddleware from 'redux-saga'
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import Api from '...'
+// import Api from '...';
 // call gọi 1 func trong saga
 // takeLeading: chạy saga mỗi lần dispatch nhưng phải đợi lệnh này chạy xong nếu trong thời gian chạy mà dispatch action sẽ ko tính 
 // take : hoạt động theo watcher và worker
@@ -10,25 +10,25 @@ import Api from '...'
 // debounce:: trì hoãn 1 thời gian 
 
 
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
-function* fetchUser(action) {
-  try {
-    const user = yield call(Api.fetchUser, action.payload.userId)
-    // dispatch 1 action từ saga
-    yield put({ type: 'USER_FETCH_SUCCEEDED', user: user })
-  } catch (e) {
-    yield put({ type: 'USER_FETCH_FAILED', message: e.message })
-  }
-}
+// // worker Saga: will be fired on USER_FETCH_REQUESTED actions
+// function* fetchUser(action) {
+//   try {
+//     const user = yield call(Api.fetchUser, action.payload.userId)
+//     // dispatch 1 action từ saga
+//     yield put({ type: 'USER_FETCH_SUCCEEDED', user: user })
+//   } catch (e) {
+//     yield put({ type: 'USER_FETCH_FAILED', message: e.message })
+//   }
+// }
 
 /*
   Starts fetchUser on each dispatched `USER_FETCH_REQUESTED` action.
   Allows concurrent fetches of user.
 */
 // chạy saga mỗi lần dispatch action 
-function* mySaga() {
-  yield takeEvery('USER_FETCH_REQUESTED', fetchUser)
-}
+// function* mySaga() {
+//   yield takeEvery('USER_FETCH_REQUESTED', fetchUser)
+// }
 
 /*
   Alternatively you may use takeLatest.
@@ -42,4 +42,4 @@ function* mySaga() {
 //   yield takeLatest('USER_FETCH_REQUESTED', fetchUser)
 // }
 
-export default mySaga
+// export default mySaga

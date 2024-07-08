@@ -31,7 +31,7 @@ export default function SpeechRecognitionScreen() {
   async function toggleListening() {
     try {
       if (isListening) {
-        console.log('kk');
+        // console.log('kk');
         await Voice.stop();
         setIsListening(false);
       } else {
@@ -53,7 +53,7 @@ const handleAddTodo = () => {
       name: text,
       status: true,
     }));
-    
+    setText('')
   }
 };
 const handleDeleteTodo = (id: number | string) => {
@@ -76,7 +76,7 @@ const handleDeleteTodo = (id: number | string) => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item ,index}) => (
           <View key={item.id} style={{flexDirection:'row',marginTop:10}}>
-          <Text style={{ fontSize: 18, marginVertical: 5,marginRight:50 }}>{index}:{item.name}</Text>
+          <Text style={{ fontSize: 18, marginVertical: 5,marginRight:50 ,width:200}}>{index}.{' '}{item.name}</Text>
           <Button title='del' onPress={()=>handleDeleteTodo(item.id)}/>
           </View>
         )}

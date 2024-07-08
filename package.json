@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@ant-design/icons-react-native": "^2.3.2",
-    "@react-native-async-storage/async-storage": "^1.22.3",
+    "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-native-community/cli-doctor": "^13.5.1",
     "@react-native-firebase/analytics": "^18.8.0",
     "@react-native-firebase/app": "^19.0.0",
@@ -51,7 +51,7 @@
     "@babel/core": "^7.20.0",
     "@babel/preset-env": "^7.20.0",
     "@babel/runtime": "^7.20.0",
-    "@react-native/babel-preset": "0.73.20",
+    "@react-native/babel-preset": "0.74.1",
     "@react-native/eslint-config": "0.73.2",
     "@react-native/metro-config": "0.73.4",
     "@react-native/typescript-config": "0.73.1",
