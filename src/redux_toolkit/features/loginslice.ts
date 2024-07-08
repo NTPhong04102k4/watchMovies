@@ -20,6 +20,7 @@ const loginSlice = createSlice({
   reducers: {
     storeData: (state, action: PayloadAction<LoginState>) => {
       const { id, userName, accessToken } = action.payload;
+     
       state.id = id;
       state.userName = userName;
       state.accessToken = accessToken;

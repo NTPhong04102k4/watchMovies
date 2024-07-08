@@ -5,13 +5,17 @@ import Voice, {
   SpeechErrorEvent,
 } from '@react-native-voice/voice';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTodo, delTodo } from '../../src/redux_toolkit/features/todoSlice';
+import { addTodo, delTodo ,updateData,fetchTodo} from '../../src/redux_toolkit/features/todoSlice';
 
 export default function SpeechRecognitionScreen() {
   const [results, setResults] = useState<string[]>([]);
   const [isListening, setIsListening] = useState(false);
 
   useEffect(() => {
+    useEffect(() => {
+      dispatch({ type: 'todos/fetchTodos' });
+    }, [dispatch]);
+    
     function onSpeechResults(e: SpeechResultsEvent) {
       setResults(e.value ?? []);
     }
@@ -45,7 +49,7 @@ export default function SpeechRecognitionScreen() {
   }
 const [text,setText]=useState('');
 const dispatch = useDispatch();
-const todos = useSelector((state) => state?.todo?.todos);
+const todos = useSelector((state:any) => state?.todo?.todos);
 const handleAddTodo = () => {
   if (text.trim()) {
     dispatch(addTodo({
@@ -56,11 +60,12 @@ const handleAddTodo = () => {
     setText('')
   }
 };
+function handleUpdateTodo(){}
 const handleDeleteTodo = (id: number | string) => {
-  dispatch(delTodo({
-    id
-  }));
+  dispatch(delTodo({id}));
 };
+
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -69,15 +74,22 @@ const handleDeleteTodo = (id: number | string) => {
         value={text}
         onChangeText={setText}
       />
+      <View style={{flexDirection:'row',justifyContent:'space-between',width:200}}>
       <Button title="Add Todo" onPress={handleAddTodo} />
+      <Button title='Get Infor'  />
+      {/* <Button title='update' onPress={updateHandle} /> */}
 
+      </View>
+   
       <FlatList
         data={todos}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item ,index}) => (
           <View key={item.id} style={{flexDirection:'row',marginTop:10}}>
           <Text style={{ fontSize: 18, marginVertical: 5,marginRight:50 ,width:200}}>{index}.{' '}{item.name}</Text>
+          <Button title='edit' onPress={()=>handleUpdateTodo((item.id,item.name))/>
           <Button title='del' onPress={()=>handleDeleteTodo(item.id)}/>
+
           </View>
         )}
       />

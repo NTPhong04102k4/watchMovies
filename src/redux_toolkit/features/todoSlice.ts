@@ -1,31 +1,42 @@
+// src/features/todo/todoSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface Todos {
-  name: string | null;
-  id: number | string;
-  status: boolean;
+interface Todo {
+  id: number;
+  name: string;
 }
 
-const initialState = {
-  todos: [] as Todos[],
+interface TodoState {
+  todos: Todo[];
+}
+
+const initialState: TodoState = {
+  todos: [],
 };
 
 const todoSlice = createSlice({
-  name: 'todo',
+  name: 'todos',
   initialState,
   reducers: {
-    addTodo: (state, action: PayloadAction<Todos>) => {
-
-     
-
-      state.todos.push({ ...action.payload});
+    addTodo: (state, action: PayloadAction<Todo>) => {
+      state.todos.push(action.payload);
     },
-    delTodo: (state, action: PayloadAction<{id:number|string}>) => {
-  
-      state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
+    updateTodo: (state, action: PayloadAction<{ id: number; newName: string }>) => {
+      const { id, newName } = action.payload;
+      const todo = state.todos.find(todo => todo.id === id);
+      if (todo) {
+        todo.name = newName;
+      }
+    },
+    deleteTodo: (state, action: PayloadAction<number>) => {
+      state.todos = state.todos.filter(todo => todo.id !== action.payload);
+    },
+    fetchTodosSuccess: (state, action: PayloadAction<Todo[]>) => {
+      state.todos = action.payload;
     },
   },
 });
 
-export const { addTodo, delTodo } = todoSlice.actions;
+export const { addTodo, updateTodo, deleteTodo, fetchTodosSuccess } = todoSlice.actions;
+
 export default todoSlice.reducer;

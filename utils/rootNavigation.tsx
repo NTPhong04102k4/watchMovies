@@ -8,7 +8,7 @@ import SpeechRecognitionScreen from '../screen/Login/Speech';
 const RootStack = createNativeStackNavigator();
 
 export default function Stack({initRoute}: any) {
-  const {id, accessToken, userName} = useSelector(state => state.login);
+  const {id, accessToken, userName} = useSelector((state:any) => state.login);
   const initialRouteName = id ? 'Home' : 'Login';
   return (
     <RootStack.Navigator
