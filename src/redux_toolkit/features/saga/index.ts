@@ -47,7 +47,7 @@ export default function* rootSaga() {
 
 function* addTodoSaga(action: PayloadAction<{ id: number | string; name: string }>) {
   try {
-    console.log('waw')
+
     yield put(addTodo(action.payload));
   } catch (error) {
     console.error('Error adding todo:',error);

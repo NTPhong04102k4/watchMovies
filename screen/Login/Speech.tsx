@@ -84,7 +84,8 @@ const handleDeleteTodo = (id: number | string) => {
    
       <FlatList
         data={todos}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(
+          item) => item.id.toString()}
         renderItem={({ item ,index}) => (
           <View key={item.id} style={{flexDirection:'row',marginTop:10}}>
           <Text style={{ fontSize: 18, marginVertical: 5,marginRight:50 ,width:200}}>{index}.{' '}{item.name}</Text>
