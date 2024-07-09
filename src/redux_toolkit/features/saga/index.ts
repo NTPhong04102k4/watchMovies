@@ -15,27 +15,63 @@
 // src/sagas/todoSaga.js
 // src/sagas/todoSaga.ts
 // src/sagas/todoSaga.ts
-import { takeLatest, call, put, all } from 'redux-saga/effects';
-import { fetchTodosSuccess } from '../todoSlice';
+import { takeLatest, call, put, all,takeEvery } from 'redux-saga/effects';
 
 
-function* fetchTodos() {
-  try {
-    const response = yield call(fetch, 'https://jsonplaceholder.typicode.com/todos');
-    const data = yield response.json();
-    yield put(fetchTodosSuccess(data));
-  } catch (error) {
-    console.error('Error fetching todos:', error);
-  }
+import { addTodo, updateTodo, deleteTodo, addTodoRequest, updateTodoRequest, deleteTodoRequest } from '../todoSlice';
+import { PayloadAction } from '@reduxjs/toolkit';
+function* watchAddTodo() {  console.log('watcher')
+  yield takeEvery(addTodoRequest.type, addTodoSaga);
 }
 
-function* watchFetchTodos() {
-  yield takeLatest('todos/fetchTodos', fetchTodos);
+function* watchUpdateTodo() {  console.log('watcher')
+  yield takeEvery(updateTodoRequest.type, updateTodoSaga);
+}
+
+function* watchDeleteTodo() {
+  console.log('watcher')
+  yield takeEvery(deleteTodoRequest.type, deleteTodoSaga);
 }
 
 export default function* rootSaga() {
-  yield all([watchFetchTodos()]);
+  yield all([
+    watchAddTodo(),
+    watchUpdateTodo(),
+    watchDeleteTodo(),
+    
+  ]);
 }
+// src/features/todo/sagas.ts
+
+
+
+function* addTodoSaga(action: PayloadAction<{ id: number | string; name: string }>) {
+  try {
+    console.log('waw')
+    yield put(addTodo(action.payload));
+  } catch (error) {
+    console.error('Error adding todo:',error);
+  }
+}
+
+function* updateTodoSaga(action: PayloadAction<{ id: number | string, newName: string }>) {
+  try {
+    yield put(updateTodo(action.payload));
+  } catch (error) {
+    console.error('Error updating todo:', error);
+  }
+}
+
+function* deleteTodoSaga(action: PayloadAction<number | string>) {
+  try {
+  
+    console.log('wdw')
+    yield put(deleteTodo(action.payload));
+  } catch (error) {
+    console.error('Error deleting todo:', error);
+  }
+}
+
 
 
 
